@@ -1,11 +1,13 @@
 # FlutterTube
 
-Um projeto de estudo em Flutter com foco BLOC.
-O objetivo é criar um app em Flutter para Android e iOS pesquisando, listando, exbindo e favoritando vídeos do YouTube ;)
+Um projeto de estudo em Flutter com foco em BLOC.
+O objetivo é criar um app em Flutter para Android e iOS pesquisando, listando, exibindo e favoritando vídeos do YouTube ;)
+
+
 
 
 ### Para rodar o projeto 
-Crie um projeto e uma chave de API no [Console do Google](http://console.developers.google.com) e cole a chave no arquivo app_env.dart na constante APP_KEY;
+Crie um projeto e uma chave de API no [Console do Google](http://console.developers.google.com) para utilizar a API do youtube. Assim que tiver a chave cole-a no arquivo app_env.dart na constante API_KEY;
 Há um arquivo de exemplo chamado app_env_example.dart, veja-o!
 
 <!-- ## Getting Started

@@ -5,11 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_tube/app_env.dart' as APP_ENV;
 
 class Api {
-  search(String search) async {
+  Future<List<VideoModel>> search(String search) async {
     http.Response response = await http.get(
         "https://www.googleapis.com/youtube/v3/search?part=snippet&q=$search&type=video&key=${APP_ENV.API_KEY}&maxResults=10");
 
-    decode(response);
+    return decode(response);
   }
 
   List<VideoModel> decode(http.Response response) {
