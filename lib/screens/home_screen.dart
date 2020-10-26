@@ -1,14 +1,17 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tube/blocs/favorites_bloc.dart';
 import 'package:flutter_tube/blocs/videos_bloc.dart';
 import 'package:flutter_tube/delegates/data_search.dart';
 import 'package:flutter_tube/models/video_model.dart';
+import 'package:flutter_tube/screens/video_screen.dart';
 import 'package:flutter_tube/tiles/video_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VideosBloc videosBloc = BlocProvider.getBloc<VideosBloc>();
+    FavoritesBloc favoritesBloc = BlocProvider.getBloc<FavoritesBloc>();
 
     return Scaffold(
       appBar: AppBar(
@@ -18,9 +21,22 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Align(
             alignment: Alignment.center,
-            child: Text('0'),
+            child: StreamBuilder<Map<String, VideoModel>>(
+                stream: favoritesBloc.favoriteOutput,
+                builder: (context, favoritesVideosSnapshot) {
+                  if (favoritesVideosSnapshot.hasData) {
+                    return Text(favoritesVideosSnapshot.data.length.toString());
+                  } else {
+                    return const SizedBox();
+                  }
+                }),
           ),
-          IconButton(icon: Icon(Icons.star), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.star),
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => VideoScreen()));
+              }),
           IconButton(
               icon: Icon(Icons.search),
               onPressed: () async {
