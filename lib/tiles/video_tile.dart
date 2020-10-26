@@ -57,6 +57,7 @@ class VideoTile extends StatelessWidget {
                 )),
                 StreamBuilder<Map<String, VideoModel>>(
                     stream: favoritesBloc.favoriteOutput,
+                    initialData: {},
                     builder: (context, favoritesVideosSnapshot) {
                       return favoritesVideosSnapshot.hasData
                           ? IconButton(
