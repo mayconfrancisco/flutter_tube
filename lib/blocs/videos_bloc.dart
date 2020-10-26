@@ -17,12 +17,16 @@ class VideosBloc extends BlocBase {
 
   VideosBloc() {
     api = Api();
-
     _searchStreamController.stream.listen(_search);
   }
 
   _search(search) async {
-    videos = await api.search(search);
+    if (search != null) {
+      _videosStreamController.add([]);
+      videos = await api.search(search);
+    } else {
+      videos += await api.nextPage();
+    }
     _videosStreamController.sink.add(videos);
   }
 
